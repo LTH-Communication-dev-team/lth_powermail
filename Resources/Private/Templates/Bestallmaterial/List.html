@@ -1,0 +1,42 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+<f:section name="main">
+
+<f:flashMessages />
+
+<div  class="tx_lthbestallmaterial" >
+
+	<f:for each="{items}" as="item">
+		<div id="lthBestallMaterialItem{item.i}" class="lthBestallMaterialItem">
+                    <div style="float:left;width:70%;">
+                        <h2 style="margin-top:0px;">{item.header}</h2>
+                        <p>{item.bodytext}</p>
+                    </div>
+                    <div style="float:left;width:20%;">
+                        <img src="{item.image}" />
+                    </div>
+                    <div style="float:left;width:10%;">
+                        <select class="lthBestallMaterialSelect" name="lthBestallMaterialSelect">
+                            <option value="0">0</option>
+                            <option value="1" selected="selected">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+		</div>
+            
+	</f:for>
+        <div style="margin-top:30px;">
+            <input type="button" class="btn btn-primary" onclick="lthBestallMaterialGetPowermailForm();" value="Gå vidare och fyll i dina adressuppgifter">
+        </div>
+</div>
+
+</f:section>
+</html>

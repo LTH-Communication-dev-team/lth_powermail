@@ -1,0 +1,39 @@
+<T3DataStructure>
+	<meta>
+		<langDisable>1</langDisable>
+	</meta>
+	<sheets>
+		<main>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:powermail/Resources/Private/Language/locallang_db.xlf:flexform.main</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+                                        <settings.flexform.main.table>
+						<TCEforms>
+							<label>Database table</label>
+							<config>
+								<type>select</type>
+								<renderType>selectSingle</renderType>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">fe_users</numIndex>
+										<numIndex index="1">fe_users</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">tt_address</numIndex>
+										<numIndex index="1">tt_address</numIndex>
+									</numIndex>
+								</items>
+								<size>1</size>
+								<minitems>1</minitems>
+								<maxitems>1</maxitems>
+							</config>
+						</TCEforms>
+					</settings.flexform.main.table>
+				</el>
+			</ROOT>
+		</main>
+	</sheets>
+</T3DataStructure>
