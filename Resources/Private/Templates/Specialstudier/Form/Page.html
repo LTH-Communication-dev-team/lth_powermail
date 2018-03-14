@@ -1,0 +1,56 @@
+{namespace vh=In2code\Powermail\ViewHelpers}
+<fieldset class="powermail_fieldset powermail_fieldset_{page.uid} {page.css}">
+  <legend class="powermail_legend">{page.title}</legend>
+
+        <f:render partial="Form/Field/Input" arguments="{field: page.fields.0}" />
+        
+        <f:render partial="Form/Field/Input" arguments="{field: page.fields.1}" />
+        
+        <f:render partial="Form/Field/Input" arguments="{field: page.fields.2}" />
+        
+        <label><b>Jag söker följande kurser / I apply for the following courses</b></label>
+        
+        <table border="0">
+            <thead>
+                <tr>
+                    <th style="width:5%;"></th>
+                    <th style="width:30%;">Kurskod / Course code *</th>
+                    <th style="width:60%;">Kursnamn / Course name *</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="width:5%;"><b>1.</b></td>
+                    <td style="width:30%;"><f:render partial="Form/Field/Input" arguments="{field: page.fields.3}" /></td>
+                    <td style="width:60%;"><f:render partial="Form/Field/Input" arguments="{field: page.fields.4}" /></td>
+                </tr>
+                <tr>
+                    <td style="width:5%;"><b>2.</b></td>
+                    <td style="width:30%;"><f:render partial="Form/Field/Input" arguments="{field: page.fields.5}" /></td>
+                    <td style="width:60%;"><f:render partial="Form/Field/Input" arguments="{field: page.fields.6}" /></td>
+                </tr>
+                <tr>
+                    <td style="width:5%;"><b>3.</b></td>
+                    <td style="width:30%;"><f:render partial="Form/Field/Input" arguments="{field: page.fields.7}" /></td>
+                    <td style="width:60%;"><f:render partial="Form/Field/Input" arguments="{field: page.fields.8}" /></td>
+                </tr>
+                <tr>
+                    <td style="width:5%;"><b>4.</b></td>
+                    <td style="width:30%;"><f:render partial="Form/Field/Input" arguments="{field: page.fields.9}" /></td>
+                    <td style="width:60%;"><f:render partial="Form/Field/Input" arguments="{field: page.fields.10}" /></td>
+                </tr>
+                
+            </tbody>
+        </table>
+        <f:render partial="Form/Field/Input" arguments="{field: page.fields.11}" />
+                
+        <f:render partial="Form/Field/File" arguments="{field: page.fields.12}" />
+
+        <f:render partial="Form/Field/Radio" arguments="{field: page.fields.13}" />
+
+        <f:render partial="Form/Field/Radio" arguments="{field: page.fields.14}" />
+
+        <f:render partial="Form/Field/Recaptcha" arguments="{field: page.fields.15}" />
+
+        <f:render partial="Form/Field/Submit" arguments="{field: page.fields.16}" />
+</fieldset>
