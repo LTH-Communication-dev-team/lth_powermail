@@ -7,21 +7,28 @@ plugin.tx_powermail {
                 fieldWrappingClasses =
                 labelClasses =
                 offsetClasses =
+                submitClasses = btn btn-default
+                numberOfColumns = 1
+                fieldAndLabelWrappingClasses = 
             }
+            framework {
+                numberOfColumns = 0
+            }
+        }
+        misc {
+            forceJavaScriptDatePicker = 1
+            htmlForHtmlFields = 1
+            htmlForLabels = 1
+        }
+        main {
+            pid = 0
+            confirmation = 0
+            optin = 0
+            moresteps = 0
         }
     }
 }
 
-plugin.tx_powermail.settings.misc.forceJavaScriptDatePicker = 1
-plugin.tx_powermail.settings.misc.htmlForHtmlFields = 1
-plugin.tx_powermail.settings.styles.bootstrap.numberOfColumns = 1
-plugin.tx_powermail.settings.styles.framework.numberOfColumns = 0
-plugin.tx_powermail.settings.styles.bootstrap.fieldAndLabelWrappingClasses = 
-plugin.tx_powermail.settings.main.pid = 0
-plugin.tx_powermail.settings.main.confirmation = 0
-plugin.tx_powermail.settings.main.optin = 0
-plugin.tx_powermail.settings.main.moresteps = 0
-plugin.tx_powermail.settings.misc.htmlForLabels = 1
 
 plugin.tx_powermail {
     view {
