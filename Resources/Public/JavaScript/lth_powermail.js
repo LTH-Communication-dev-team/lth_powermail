@@ -90,7 +90,7 @@ function lthBestallMaterialGetPowermailForm()
             addOnMail += items[i].split(';')[0]+' st '+items[i].split(';')[1]+"\n";
             addOnCustomer += '<p>'+items[i].split(';')[0]+' st '+items[i].split(';')[1]+'</p>';
         }
-        $("#powermail_field_products").val(addOnMail + "\n" + "mvh" + "\n" + "Kommunikationsavdelningen, LTH");
+        $("#powermail_field_products").val(addOnMail + "\n" + "mvh" + "\n\n" + "Kommunikationsavdelningen, LTH");
         var namn = $("#powermail_field_namn").val();
         var co = $("#powermail_field_co").val();
         var gatuadress = $("#powermail_field_gatuadress").val();
