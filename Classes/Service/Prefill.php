@@ -13,7 +13,7 @@ class user_prefill
             $GLOBALS['TSFE']->set_no_cache();
             $username = $GLOBALS['TSFE']->fe_user->user['username'];*/
             $feUserObj = \TYPO3\CMS\Frontend\Utility\EidUtility::initFeUser();
-            $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['extendpowermail']);
+            $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['lth_powermail']);
             
             if($username || 1+1===2) {
                 $dbhostUsers = $settings['dbhostUsers'];

@@ -7,7 +7,7 @@ $action = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('action');
 $password = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('password');
 $sid = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('sid');
 
-$settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['extendpowermail']);
+$settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['lth_powermail']);
 
 switch($action) {
     case 'fillFields':

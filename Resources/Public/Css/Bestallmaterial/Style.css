@@ -1,5 +1,6 @@
-.tx-powermail {
-    
+.tx-powermail img {
+    max-height: 100px;
+    max-width: 80px;
 }
 
 .powermail_fieldset {
