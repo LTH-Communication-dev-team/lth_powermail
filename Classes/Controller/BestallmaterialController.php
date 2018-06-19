@@ -11,7 +11,7 @@ namespace LTH\LthPowermail\Controller;
  *  (c) 2018 Tomas havner <tomas.havner@kansli.lth.se>, LTH
  *
  ***/
-
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * BestallmaterialController
  */
@@ -30,14 +30,15 @@ class BestallmaterialController extends \TYPO3\CMS\Extbase\Mvc\Controller\Action
     
     public function getItems()
     {
-        $pageId = $GLOBALS['TSFE']->id;
+        
+        $pageId = (string)$GLOBALS['TSFE']->id;
         $i = 0;
         $items = array();
         if($pageId) {
             //$GLOBALS['TYPO3_DB']->store_lastBuiltQuery = 1;
             $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery("T.header, T.bodytext, S.identifier",
                     "tt_content T LEFT JOIN sys_file_reference SR ON T.uid = SR.uid_foreign LEFT JOIN sys_file S ON S.uid = SR.uid_local",
-                    "T.pid=$pageId AND T.CType='textmedia' AND T.deleted=0",
+                    "T.pid=$pageId AND T.CType='textpic' AND T.deleted=0",
                     "",
                     "T.sorting",
                     "");

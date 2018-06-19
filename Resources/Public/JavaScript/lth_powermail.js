@@ -13,19 +13,66 @@ $(document).ready(function() {
         $('.tx-powermail').append('<div class="lthPackageOverlay"></div>');
         $('.tx-powermail').prepend('<div class="lthPackageLoader" style="position:absolute;top:40%;left:40%;"></div>');
     });
+    
+    if($('#lthPowermailBestallMaterialContainer').length > 0) {
+        var header,bodytext,image,template, i=1;
+        var pageId = $('body').attr('id').replace('p','');
+        if(pageId) {
+            $.ajax({
+                type : "POST",
+                url : 'index.php',
+                data: {
+                    eID: 'lth_powermail',
+                    action: 'bestallMaterial',
+                    input: {
+                        pageId: pageId,
+                    },
+                    sid: Math.random(),
+                },
+                //contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(d) {
+                    if(d.data) {
+                        $.each( d.data, function( key, aData ) {
+                            if(aData.bodytext) bodytext = aData.bodytext;
+                            if(aData.header) header = aData.header;
+                            if(aData.image) image = aData.image;
+                            template = $('#lthPowermailBestallMaterialTemplate').html();
+
+                            template = template.replace('###id###', 'item_'+i);
+                            template = template.replace(/###header###/g, header);
+                            template = template.replace('###bodytext###', bodytext);
+                            template = template.replace('###image###', image);
+                            
+                            $('#lthPowermailBestallMaterialContainer').append(template);
+                            i++;
+                        });
+                        
+                        
+                    } 
+                },
+                failure: function(errMsg) {
+                    console.log(errMsg);
+                }
+            });
+        }
+        
+    }
 });
 
 
 function lthBestallMaterialGetPowermailForm()
 {
     var noOfItems;
-    var item = "";
+    var item = "", addOnMail = "";
     var items = new Array;
     $(".lthBestallMaterialItem").each(function() {
-        noOfItems = $(this).find("select[name=lthBestallMaterialSelect] > option:selected").text();
-        if(noOfItems !== "0") {
-            item = $(this).find("h2").text();
-            items.push(noOfItems+';'+item);
+        noOfItems = $(this).val();
+        if(noOfItems) {
+            if(isPositiveInteger(noOfItems)) {
+                item = $(this).attr('title');
+                items.push(noOfItems+';'+item);
+            }
         }
         
         //jQuery('#mydiv > select[name=myselect] > option:selected')
@@ -34,17 +81,33 @@ function lthBestallMaterialGetPowermailForm()
     if(items.length === 0) {
         alert("Du måste välja minst en produkt!");
     } else {
-        $("#powermail_field_products").val(JSON.stringify(items));
+        
         if($('.lthBestallMaterialOrderedProducts').length === 0) {
             $(".tx-powermail").prepend('<div class="lthBestallMaterialOrderedProducts"></div>');
         }
-        var addOn = '<p><b>Dina beställningar</b></p>';
-        for (var i=0; i<items.length; i++) { 
-            addOn += '<p>'+items[i].split(';')[0]+' st '+items[i].split(';')[1]+'</p>';
+        var addOnCustomer = '<p><b>Dina beställningar</b></p>';
+        for (var i=0; i<items.length; i++) {
+            addOnMail += items[i].split(';')[0]+' st '+items[i].split(';')[1]+"\n";
+            addOnCustomer += '<p>'+items[i].split(';')[0]+' st '+items[i].split(';')[1]+'</p>';
         }
-        $(".lthBestallMaterialOrderedProducts").html(addOn);
-        $(".tx_lthbestallmaterial").toggle(600);
-        $(".tx-powermail").toggle(600);
+        $("#powermail_field_products").val(addOnMail + "\n" + "mvh" + "\n" + "Kommunikationsavdelningen, LTH");
+        var namn = $("#powermail_field_namn").val();
+        var co = $("#powermail_field_co").val();
+        var gatuadress = $("#powermail_field_gatuadress").val();
+        var postnr = $("#powermail_field_postnr").val();
+        var ort = $("#powermail_field_ort").val();
+        var land = $("#powermail_field_land").val()
+        var adress = namn + "\n";
+        if(co) adress += co + "\n";
+        adress += gatuadress + "\n" + postnr + " " + ort + "\n";
+        if(land) adress += land;
+        var rightNow = new Date();
+        $("#powermail_field_datum").val(rightNow.toISOString().slice(0,10));
+        $("#powermail_field_adress").val(adress);
+        $(".lthBestallMaterialOrderedProducts").html(addOnCustomer);
+        /*$(".tx_lthbestallmaterial").toggle(600);
+        $(".tx-powermail").toggle(600);*/
+        $(".powermail_fieldset").toggle();
     }
     
     /*$.ajax({
@@ -77,8 +140,13 @@ function lthBestallMaterialGetPowermailForm()
 
 function lthBestallMaterialReturnToItems()
 {
-    $(".tx_lthbestallmaterial").toggle(600);
-    $(".tx-powermail").toggle(600);
+    $(".powermail_fieldset").toggle();
+}
+
+
+function isPositiveInteger(s)
+{
+  return /^\+?[1-9][\d]*$/.test(s);
 }
 
 

@@ -1,4 +1,14 @@
 page.includeCSS.lth_powermail_bestallmaterial = typo3conf/ext/lth_powermail/Resources/Public/Css/Bestallmaterial/Style.css
+page.includeJSFooterlibs.lth_package = typo3conf/ext/lth_powermail/Resources/Public/JavaScript/lth_powermail.js
+
+plugin.tx_powermail {
+    view {
+        templateRootPaths {
+            1 = EXT:powermail/Resources/Private/Templates/
+            10 =  EXT:lth_powermail/Resources/Private/Templates/Bestallmaterial/
+        }
+    }
+}
 
 plugin.tx_bwpowermailmpdf {
   settings {

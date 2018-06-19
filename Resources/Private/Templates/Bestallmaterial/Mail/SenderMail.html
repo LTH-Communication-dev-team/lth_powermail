@@ -1,8 +1,7 @@
-{namespace vh=In2code\Powermail\ViewHelpers f=TYPO3\CMS\Fluid\ViewHelpers}
-
+{namespace vh=In2code\Powermail\ViewHelpers}
 <f:layout name="Mail" />
 
-Render Powermail Mail to Receiver
+Render Powermail Mail to Sender
 {powermail_rte}									Variable is filled with values from RTE in backend
 {powermail_all}									Outputs all fields
 {marker1}, {firstname}, etc.. 					Outputs a field
@@ -13,13 +12,10 @@ Render Powermail Mail to Receiver
 NOTE: See example section after main section
 
 <f:section name="main">
-	<vh:Misc.Variables mail="{mail}" type="mail" function="receiver">
-		<f:format.raw>{powermail_all}</f:format.raw>
+	<vh:Misc.Variables mail="{mail}" type="mail" function="sender">
+		<f:format.html parseFuncTSPath="lib.parseFunc_powermail">{powermail_rte}</f:format.html>
 	</vh:Misc.Variables>
-
-	<f:render partial="Misc/MarketingInformation" arguments="{marketingInfos : marketingInfos}" />
 </f:section>
-
 
 
 
@@ -31,7 +27,7 @@ THIS IS ONLY AN EXAMPLE SECTION
 <f:section name="example">
 
 	1. Get values from RTE from Backend:
-	<vh:Misc.Variables mail="{mail}" type="mail" function="receiver">
+	<vh:Misc.Variables mail="{mail}" type="mail" function="sender">
 		<f:format.html parseFuncTSPath="lib.parseFunc_powermail">{powermail_rte}</f:format.html>
 	</vh:Misc.Variables>
 
@@ -42,8 +38,6 @@ THIS IS ONLY AN EXAMPLE SECTION
 	</vh:string.RawAndRemoveXss>
 
 	3. Get some lonely fields
-	Hi {firstname} {lastname}, thank you for your email.<br />
-	{label_email}: {email}<br />
-	{label_text}: {text}
+	Hi {firstname} {lastname}, this is a test...
 
 </f:section>
