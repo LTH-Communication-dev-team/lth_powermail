@@ -35,7 +35,7 @@ function bestallMaterial($input)
         //$GLOBALS['TYPO3_DB']->store_lastBuiltQuery = 1;
         $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery("T.header, T.bodytext, S.identifier",
                 "tt_content T LEFT JOIN sys_file_reference SR ON T.uid = SR.uid_foreign LEFT JOIN sys_file S ON S.uid = SR.uid_local",
-                "T.pid=$pageId AND T.CType IN('textpic','textmedia') AND T.deleted=0",
+                "T.pid=$pageId AND T.CType IN('textpic','textmedia') AND T.deleted=0 AND SR.deleted = 0",
                 "",
                 "T.sorting",
                 "");
