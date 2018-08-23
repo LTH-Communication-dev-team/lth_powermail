@@ -15,7 +15,7 @@ class user_prefill
             $feUserObj = \TYPO3\CMS\Frontend\Utility\EidUtility::initFeUser();
             $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['lth_powermail']);
             
-            if($username || 1+1===2) {
+            if($username) {
                 $dbhostUsers = $settings['dbhostUsers'];
                 $dbUsers = $settings['dbUsers'];
                 $userUsers = $settings['userUsers'];

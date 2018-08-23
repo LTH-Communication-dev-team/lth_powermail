@@ -1,0 +1,16 @@
+  # cat=basic/dev/160; type=input; label=Lucache Host
+dbhostUsers=
+  # cat=basic/dev/161; type=input; label=Lucache db
+dbUsers=
+  # cat=basic/dev/162; type=input; label=Lucache username
+userUsers=
+  # cat=basic/dev/163; type=input; label=Lucache pw
+pwUsers=
+  # cat=basic/dev/164; type=input; label=Ladok host
+dbhostLadok=
+  # cat=basic/dev/165; type=input; label=Ladok db
+dbLadok=
+  # cat=basic/dev/166; type=input; label=Ladok username
+userLadok=
+  # cat=basic/dev/167; type=input; label=Ladok pw
+pwLadok=
