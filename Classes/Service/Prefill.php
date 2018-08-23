@@ -15,6 +15,7 @@ class user_prefill
             $feUserObj = \TYPO3\CMS\Frontend\Utility\EidUtility::initFeUser();
             $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['lth_powermail']);
             
+            $username = $feUserObj->user['username'];
             if($username) {
                 $dbhostUsers = $settings['dbhostUsers'];
                 $dbUsers = $settings['dbUsers'];
@@ -25,7 +26,7 @@ class user_prefill
                 $userLadok = $settings['userLadok'];
                 $pwLadok = $settings['pwLadok'];
             }
-            $username = $feUserObj->user['username'];
+            
             $mysqli = new mysqli($dbhostUsers, $userUsers, $pwUsers, $dbUsers);
             mysqli_set_charset($mysqli,'utf8');
             if ($mysqli->connect_errno) {
@@ -91,7 +92,7 @@ class user_prefill
                 $res->free();
                 $mysqli->close();
             }
-            return array('pnr' => $pnr, 'namn' => $tnamn . ' ' . $enamn, 'adress' => $this->addSpace($coadr) . 
+            return array('pnr' => $pnr, 'namn' => $tnamn . 'aa ' . $enamn, 'adress' => $this->addSpace($coadr) . 
                 $this->addSpace($gatadr) . $this->addSpace($postnr) . $ort, 'epost' => $epost, 'telefon' => $telefon, 'program' => $program);
         }
         
