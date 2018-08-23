@@ -92,7 +92,7 @@ class user_prefill
                 $res->free();
                 $mysqli->close();
             }
-            return array('pnr' => $pnr, 'namn' => $tnamn . 'aa ' . $enamn, 'adress' => $this->addSpace($coadr) . 
+            return array('pnr' => $pnr, 'namn' => $tnamn . ' ' . $enamn, 'adress' => $this->addSpace($coadr) . 
                 $this->addSpace($gatadr) . $this->addSpace($postnr) . $ort, 'epost' => $epost, 'telefon' => $telefon, 'program' => $program);
         }
         
