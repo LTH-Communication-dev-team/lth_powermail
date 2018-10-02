@@ -33,7 +33,7 @@ function bestallMaterial($input)
     $items = array();
     if($pageId) {
         //$GLOBALS['TYPO3_DB']->store_lastBuiltQuery = 1;
-        $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery("T.header, T.bodytext, S.identifier",
+        $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery("T.uid, T.header, T.bodytext, S.identifier",
                 "tt_content T LEFT JOIN sys_file_reference SR ON T.uid = SR.uid_foreign LEFT JOIN sys_file S ON S.uid = SR.uid_local",
                 "T.pid=$pageId AND T.CType IN('textpic','textmedia') AND T.deleted=0 AND SR.deleted = 0",
                 "",
@@ -42,6 +42,7 @@ function bestallMaterial($input)
         while ($row = $GLOBALS["TYPO3_DB"]->sql_fetch_assoc($res)) {
             $header = $row["header"];
             $bodytext = $row["bodytext"];
+            $uid = $row["uid"];
             if($bodytext) {
                 $bodytext = str_replace('<link ','<a href="',$bodytext);
                 //<link fileadmin="" mypdf.pdf="">
@@ -54,7 +55,7 @@ function bestallMaterial($input)
             } else {
                 $image = "fileadmin/$image";
             }
-            $items[] = array("header" => $header, "bodytext" => $bodytext, "image" => $image);
+            $items[] = array("uid" => $uid, "header" => $header, "bodytext" => $bodytext, "image" => $image);
             $i++;
         }
         $GLOBALS['TYPO3_DB']->sql_free_result($res);

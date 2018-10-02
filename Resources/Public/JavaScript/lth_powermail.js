@@ -15,7 +15,7 @@ $(document).ready(function() {
     });
     
     if($('#lthPowermailBestallMaterialContainer').length > 0) {
-        var header,bodytext,image,template, i=1;
+        var uid,header,bodytext,image,template, i=1;
         var pageId = $('body').attr('id').replace('p','');
         if(pageId) {
             $.ajax({
@@ -34,12 +34,13 @@ $(document).ready(function() {
                 success: function(d) {
                     if(d.data) {
                         $.each( d.data, function( key, aData ) {
+                            if(aData.uid) uid = aData.uid;
                             if(aData.bodytext) bodytext = aData.bodytext;
                             if(aData.header) header = aData.header;
                             if(aData.image) image = aData.image;
                             template = $('#lthPowermailBestallMaterialTemplate').html();
 
-                            template = template.replace('###id###', 'item_'+i);
+                            template = template.replace(/###uid###/g, uid);
                             template = template.replace(/###header###/g, header);
                             template = template.replace('###bodytext###', bodytext);
                             template = template.replace('###image###', image);
@@ -47,7 +48,17 @@ $(document).ready(function() {
                             $('#lthPowermailBestallMaterialContainer').append(template);
                             i++;
                         });
-                        
+                        $('.lthBestallMaterialItem').change(function(){
+                            var tmpId = $(this).attr('id');
+                            if($('.'+tmpId).length > 0) {
+                                if($(this).val() > 0) {
+                                    $('.'+tmpId).html($(this).val() + ' st ' + $(this).attr('title'));
+                                } else {
+                                    $('.'+tmpId).remove();
+                                    $(this).val('');
+                                }
+                            }
+                        });
                         
                     } 
                 },
@@ -64,14 +75,15 @@ $(document).ready(function() {
 function lthBestallMaterialGetPowermailForm()
 {
     var noOfItems;
-    var item = "", addOnMail = "";
+    var itemTitle = "", itemId='', addOnMail = "";
     var items = new Array;
     $(".lthBestallMaterialItem").each(function() {
         noOfItems = $(this).val();
         if(noOfItems) {
             if(isPositiveInteger(noOfItems)) {
-                item = $(this).attr('title');
-                items.push(noOfItems+';'+item);
+                itemTitle = $(this).attr('title');
+                itemId = $(this).attr('id');
+                items.push(noOfItems+';'+itemTitle+';'+itemId);
             }
         }
         
@@ -88,7 +100,7 @@ function lthBestallMaterialGetPowermailForm()
         var addOnCustomer = '<p><b>Dina beställningar</b></p>';
         for (var i=0; i<items.length; i++) {
             addOnMail += items[i].split(';')[0]+' st '+items[i].split(';')[1]+"\n";
-            addOnCustomer += '<p>'+items[i].split(';')[0]+' st '+items[i].split(';')[1]+'</p>';
+            addOnCustomer += '<p class="'+items[i].split(';')[2]+'">'+items[i].split(';')[0]+' st '+items[i].split(';')[1]+'</p>';
         }
         $("#powermail_field_products").val(addOnMail + "\n" + "mvh" + "\n\n" + "Kommunikationsavdelningen, LTH");
         var namn = $("#powermail_field_namn").val();
