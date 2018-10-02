@@ -38,20 +38,27 @@ class BestallmaterialController extends \TYPO3\CMS\Extbase\Mvc\Controller\Action
             //$GLOBALS['TYPO3_DB']->store_lastBuiltQuery = 1;
             $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery("T.header, T.bodytext, S.identifier",
                     "tt_content T LEFT JOIN sys_file_reference SR ON T.uid = SR.uid_foreign LEFT JOIN sys_file S ON S.uid = SR.uid_local",
-                    "T.pid=$pageId AND T.CType='textpic' AND T.deleted=0",
+                    "T.pid=$pageId AND (T.CType='textpic' OR T.CType='textmedia') AND T.deleted=0",
                     "",
                     "T.sorting",
                     "");
             while ($row = $GLOBALS["TYPO3_DB"]->sql_fetch_assoc($res)) {
                 $header = $row["header"];
-                $bodtext = $row["bodytext"];
+                $bodytext = $row["bodytext"];
                 $image = $row["identifier"];
                 if($image) {
                     $image = "fileadmin/$image";
                 } else {
                     $image = "fileadmin/$image";
                 }
-                $items[] = array("i" => $i, "header" => $header, "bodytext" => $bodtext, "image" => $image);
+
+                if($bodytext) {
+                    $bodytext = str_replace('\<link ','\<a href="',$bodytext);
+                    //<link fileadmin="" mypdf.pdf="">
+                    $bodytext = str_replace('.pdf\>','.pdf">',$bodytext);
+                    $bodytext = str_replace('</link>','</a>',$bodytext);
+                }
+                $items[] = array("i" => $i, "header" => $header, "bodytext" => $bodytext, "image" => $image);
                 $i++;
             }
             //echo $GLOBALS['TYPO3_DB']->debug_lastBuiltQuery;

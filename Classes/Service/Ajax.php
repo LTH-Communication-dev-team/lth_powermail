@@ -41,14 +41,20 @@ function bestallMaterial($input)
                 "");
         while ($row = $GLOBALS["TYPO3_DB"]->sql_fetch_assoc($res)) {
             $header = $row["header"];
-            $bodtext = $row["bodytext"];
+            $bodytext = $row["bodytext"];
+            if($bodytext) {
+                $bodytext = str_replace('<link ','<a href="',$bodytext);
+                //<link fileadmin="" mypdf.pdf="">
+                $bodytext = str_replace('.pdf>','.pdf">',$bodytext);
+                $bodytext = str_replace('</link>','</a>',$bodytext);
+            }
             $image = $row["identifier"];
             if($image) {
                 $image = "fileadmin/$image";
             } else {
                 $image = "fileadmin/$image";
             }
-            $items[] = array("header" => $header, "bodytext" => $bodtext, "image" => $image);
+            $items[] = array("header" => $header, "bodytext" => $bodytext, "image" => $image);
             $i++;
         }
         $GLOBALS['TYPO3_DB']->sql_free_result($res);
