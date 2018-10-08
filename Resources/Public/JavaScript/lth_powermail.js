@@ -12,6 +12,9 @@ $(document).ready(function() {
         //$('input[type="submit"]',this).prop('disabled', true);
         $('.tx-powermail').append('<div class="lthPackageOverlay"></div>');
         $('.tx-powermail').prepend('<div class="lthPackageLoader" style="position:absolute;top:40%;left:40%;"></div>');
+        if($('#lthPowermailBestallMaterialContainer').length > 0) {
+            lthBestallMaterialSubmtPowermailForm();
+        }
     });
     
     if($('#lthPowermailBestallMaterialContainer').length > 0) {
@@ -72,6 +75,24 @@ $(document).ready(function() {
 });
 
 
+function lthBestallMaterialSubmtPowermailForm()
+{
+    var namn = $("#powermail_field_namn").val();
+    var co = $("#powermail_field_co").val();
+    var gatuadress = $("#powermail_field_gatuadress").val();
+    var postnr = $("#powermail_field_postnr").val();
+    var ort = $("#powermail_field_ort").val();
+    var land = $("#powermail_field_land").val()
+    var adress = namn + "\n";
+    if(co) adress += co + "\n";
+    adress += gatuadress + "\n" + postnr + " " + ort + "\n";
+    if(land) adress += land;
+    var rightNow = new Date();
+    $("#powermail_field_datum").val(rightNow.toISOString().slice(0,10));
+    $("#powermail_field_adress").val(adress);
+}
+
+
 function lthBestallMaterialGetPowermailForm()
 {
     var noOfItems;
@@ -103,19 +124,7 @@ function lthBestallMaterialGetPowermailForm()
             addOnCustomer += '<p class="'+items[i].split(';')[2]+'">'+items[i].split(';')[0]+' st '+items[i].split(';')[1]+'</p>';
         }
         $("#powermail_field_products").val(addOnMail + "\n" + "mvh" + "\n\n" + "Kommunikationsavdelningen, LTH");
-        var namn = $("#powermail_field_namn").val();
-        var co = $("#powermail_field_co").val();
-        var gatuadress = $("#powermail_field_gatuadress").val();
-        var postnr = $("#powermail_field_postnr").val();
-        var ort = $("#powermail_field_ort").val();
-        var land = $("#powermail_field_land").val()
-        var adress = namn + "\n";
-        if(co) adress += co + "\n";
-        adress += gatuadress + "\n" + postnr + " " + ort + "\n";
-        if(land) adress += land;
-        var rightNow = new Date();
-        $("#powermail_field_datum").val(rightNow.toISOString().slice(0,10));
-        $("#powermail_field_adress").val(adress);
+        
         $(".lthBestallMaterialOrderedProducts").html(addOnCustomer);
         /*$(".tx_lthbestallmaterial").toggle(600);
         $(".tx-powermail").toggle(600);*/

@@ -10,7 +10,27 @@ Render Powermail Form
 	<f:alias map="{flashMessageClass:'powermail_message_error'}">
 		<f:render partial="FlashMessages/{vh:Misc.GetFlashMessagesPartialName()}" arguments="{_all}" />
 	</f:alias>
-    
+    <style>
+        /*.powermail_fieldset,.btn-group, .powermail_tab_navigation {
+            display:none;
+        }
+        h5 {
+            margin-top:0px;
+        }
+        .powermail_form img {
+            max-height: 100px;
+            max-width: 80px;
+        }
+        .col-sm {
+            float:left;
+        }
+        .row {
+            clear:both;
+        }*/
+        .nolabel > legend {
+            display:none;
+        }
+    </style>
 	<f:if condition="{form}">
 		<f:then>
 			<div class="container-fluid">
