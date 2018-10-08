@@ -123,7 +123,9 @@ function lthBestallMaterialGetPowermailForm()
             addOnMail += items[i].split(';')[0]+' st '+items[i].split(';')[1]+"\n";
             addOnCustomer += '<p class="'+items[i].split(';')[2]+'">'+items[i].split(';')[0]+' st '+items[i].split(';')[1]+'</p>';
         }
-        $("#powermail_field_products").val(addOnMail + "\n" + "mvh" + "\n\n" + "Kommunikationsavdelningen, LTH");
+        var halsningsFras = $("#powermail_field_halsningsfras").val();
+        $("#powermail_field_products").val(addOnMail + halsningsFras);
+        $("#powermail_field_products_receiver").val(addOnMail);
         
         $(".lthBestallMaterialOrderedProducts").html(addOnCustomer);
         /*$(".tx_lthbestallmaterial").toggle(600);

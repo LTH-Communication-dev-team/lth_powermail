@@ -14,12 +14,11 @@ NOTE: See example section after main section
 
 <f:section name="main">
 	<vh:Misc.Variables mail="{mail}" type="mail" function="receiver">
-		<f:format.raw>{powermail_all}</f:format.raw>
+		<f:format.html parseFuncTSPath="lib.parseFunc_powermail">{powermail_rte}</f:format.html>
 	</vh:Misc.Variables>
 
 	<f:render partial="Misc/MarketingInformation" arguments="{marketingInfos : marketingInfos}" />
 </f:section>
-
 
 
 
