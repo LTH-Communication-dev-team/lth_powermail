@@ -47,9 +47,9 @@ class BestallmaterialController extends \TYPO3\CMS\Extbase\Mvc\Controller\Action
                 $bodytext = $row["bodytext"];
                 $image = $row["identifier"];
                 if($image) {
-                    $image = "fileadmin/$image";
+                    $image = "/fileadmin/$image";
                 } else {
-                    $image = "fileadmin/$image";
+                    $image = "/fileadmin/$image";
                 }
 
                 if($bodytext) {
