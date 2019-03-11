@@ -44,7 +44,7 @@ function bestallMaterial($input)
             $bodytext = $row["bodytext"];
             $uid = $row["uid"];
             if($bodytext) {
-                $bodytext = str_replace('<link ','<a href="',$bodytext);
+                $bodytext = str_replace('<link ','<a href="/',$bodytext);
                 //<link fileadmin="" mypdf.pdf="">
                 $bodytext = str_replace('.pdf>','.pdf">',$bodytext);
                 $bodytext = str_replace('</link>','</a>',$bodytext);
