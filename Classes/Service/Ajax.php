@@ -51,9 +51,9 @@ function bestallMaterial($input)
             }
             $image = $row["identifier"];
             if($image) {
-                $image = "fileadmin/$image";
+                $image = "/fileadmin/$image";
             } else {
-                $image = "fileadmin/$image";
+                $image = "/fileadmin/$image";
             }
             $items[] = array("uid" => $uid, "header" => $header, "bodytext" => $bodytext, "image" => $image);
             $i++;
