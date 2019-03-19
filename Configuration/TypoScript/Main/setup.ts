@@ -43,6 +43,18 @@ plugin.tx_lthpowermail_bestallmaterial {
   }
 }
 
+plugin.tx_powermail {
+    settings.setup {
+        validation {
+            customValidation {
+                100 = LTH\LthPowermail\Domain\Validator\IdenticalContentValidator
+            }
+        }
+    }
+    _LOCAL_LANG.default.validationerror_validation.100 = The content must be identical with the field above
+    _LOCAL_LANG.sv.validationerror_validation.100 = Innehållet måste vara identiskt med fältet ovanför
+}
+
 plugin.tx_lthpowermail._CSS_DEFAULT_STYLE (
     textarea.f3-form-error {
         background-color:#FF9F9F;

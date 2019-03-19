@@ -257,3 +257,15 @@ function fillFields()
         }
     });
 }
+
+window.ParsleyValidator.addValidator('custom100', function (value, requirement) {
+    if(requirement) {
+        var otherValue = $('#powermail_field_' + requirement.toLowerCase()).val();
+        if (value == otherValue) {
+            return true;
+        }
+        return false;
+    } else {
+        return true;
+    }
+}, 32).addMessage('en', 'custom100', 'Error');

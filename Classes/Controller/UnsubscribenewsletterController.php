@@ -29,7 +29,7 @@ class UnsubscribenewsletterController extends \TYPO3\CMS\Extbase\Mvc\Controller\
         $table = $this->settings['flexform']['main']['table'];
         $rU = $_GET['rU'];
         $aC = $_GET['aC'];
-        $GLOBALS['TYPO3_DB']->exec_INSERTquery('tx_devlog', array('msg' => $table, 'crdate' => time()));
+        //$GLOBALS['TYPO3_DB']->exec_INSERTquery('tx_devlog', array('msg' => $table, 'crdate' => time()));
         if($aC && $rU && $table) {
             //$GLOBALS['TYPO3_DB']->store_lastBuiltQuery = 1;
 

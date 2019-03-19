@@ -1,0 +1,4 @@
+#################
+#### TCEMAIN ####
+#################
+tx_powermail.flexForm.validation.addFieldOptions.100 = Identical content other field

@@ -31,6 +31,8 @@ call_user_func(
                 'Bestallmaterial' => 'list'
             ]
         );
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $extKey . '/Configuration/PageTS/TCEMAIN.txt">');
+        
 
 	/* wizards
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
