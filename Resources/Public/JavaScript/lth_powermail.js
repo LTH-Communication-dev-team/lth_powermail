@@ -20,6 +20,8 @@ $(document).ready(function() {
     if($('#lthPowermailBestallMaterialContainer').length > 0) {
         var uid,header,bodytext,image,template, i=1;
         var pageId = $('body').attr('id').replace('p','');
+        var lang = $('html').attr('lang');
+
         if(pageId) {
             $.ajax({
                 type : "POST",
@@ -47,17 +49,17 @@ $(document).ready(function() {
                             template = template.replace(/###header###/g, header);
                             template = template.replace('###bodytext###', bodytext);
                             template = template.replace('###image###', image);
-                            
+                                                        
                             $('#lthPowermailBestallMaterialContainer').append(template);
                             i++;
                         });
                         $('.lthBestallMaterialItem').change(function(){
                             var tmpId = $(this).attr('id');
-                            if($('.'+tmpId).length > 0) {
+                            if($('#'+tmpId).length > 0) {
                                 if($(this).val() > 0) {
-                                    $('.'+tmpId).html($(this).val() + ' st ' + $(this).attr('title'));
+                                    $('#'+tmpId).html($(this).val() + ' st ' + $(this).attr('title'));
                                 } else {
-                                    $('.'+tmpId).remove();
+                                    $('#'+tmpId).remove();
                                     $(this).val('');
                                 }
                             }
@@ -98,6 +100,8 @@ function lthBestallMaterialGetPowermailForm()
     var noOfItems;
     var itemTitle = "", itemId='', addOnMail = "";
     var items = new Array;
+    var lang = $('html').attr('lang');
+    
     $(".lthBestallMaterialItem").each(function() {
         noOfItems = $(this).val();
         if(noOfItems) {
@@ -112,13 +116,18 @@ function lthBestallMaterialGetPowermailForm()
         //<input class="powermail_hidden  powermail_products" id="powermail_field_products" type="hidden" name="tx_powermail_pi1[field][products]" value="">
     });
     if(items.length === 0) {
-        alert("Du måste välja minst en produkt!");
+        if(lang==='sv') {
+            alert("Du måste välja minst en produkt!");
+        } else {
+            alert("You must choose at least one product!");
+        }
     } else {
         
         if($('.lthBestallMaterialOrderedProducts').length === 0) {
             $(".tx-powermail").prepend('<div class="lthBestallMaterialOrderedProducts"></div>');
         }
         var addOnCustomer = '<p><b>Dina beställningar</b></p>';
+        if(lang==='en') addOnCustomer = '<p><b>Your order</b></p>';
         for (var i=0; i<items.length; i++) {
             addOnMail += items[i].split(';')[0]+' st '+items[i].split(';')[1]+"\n";
             addOnCustomer += '<p class="'+items[i].split(';')[2]+'">'+items[i].split(';')[0]+' st '+items[i].split(';')[1]+'</p>';
