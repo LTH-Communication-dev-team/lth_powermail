@@ -45,7 +45,7 @@ $(document).ready(function() {
                             if(aData.image) image = aData.image;
                             template = $('#lthPowermailBestallMaterialTemplate').html();
 
-                            template = template.replace(/###uid###/g, uid);
+                            template = template.replace(/###id###/g, uid);
                             template = template.replace(/###header###/g, header);
                             template = template.replace('###bodytext###', bodytext);
                             template = template.replace('###image###', image);
@@ -54,7 +54,7 @@ $(document).ready(function() {
                             i++;
                         });
                         $('.lthBestallMaterialItem').change(function(){
-                            var tmpId = $(this).attr('id');
+                            var tmpId = $(this).parent().attr('id');
                             if($('#'+tmpId).length > 0) {
                                 if($(this).val() > 0) {
                                     $('#'+tmpId).html($(this).val() + ' st ' + $(this).attr('title'));
