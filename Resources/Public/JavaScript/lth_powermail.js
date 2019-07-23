@@ -267,7 +267,7 @@ function fillFields()
     });
 }
 
-window.ParsleyValidator.addValidator('custom100', function (value, requirement) {
+window.Parsley.addValidator('custom100', function (value, requirement) {
     if(requirement) {
         var otherValue = $('#powermail_field_' + requirement.toLowerCase()).val();
         if (value == otherValue) {
